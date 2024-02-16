@@ -4,4 +4,5 @@ class ImagePath {
   final String loginPhoto = 'assets/login_photo.png';
   final String ballIcon = 'assets/soccer_ball.png';
   final String google = 'assets/google.png';
+  final String footballPitch = 'assets/football_pitch.png';
 }
