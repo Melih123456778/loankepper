@@ -4,14 +4,14 @@ import 'package:loan_keeper/widgets/login_textfield.dart';
 import '../utils/image_path.dart';
 import '../utils/project_strings.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,10 +23,11 @@ class _LoginScreenState extends State<LoginScreen> {
               imageBox().animate().shimmer(duration: const Duration(seconds: 2)),
               loanKeeperRow(),
               const LoginTextField(),
-              forgotPswd(),
               Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 18.0,
+                padding: const EdgeInsets.only(
+                  left: 18.0,
+                  right: 18.0,
+                  top: 10,
                 ),
                 child: SizedBox(
                   width: double.infinity,
@@ -88,7 +89,10 @@ class _LoginScreenState extends State<LoginScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        ProjectText().loanKeeper,
+        Padding(
+          padding: const EdgeInsets.only(bottom: 8.0),
+          child: ProjectText().loanKeeper,
+        ),
       ],
     );
   }
@@ -96,10 +100,10 @@ class _LoginScreenState extends State<LoginScreen> {
   SizedBox imageBox() {
     return SizedBox(
       width: double.infinity,
-      height: 300,
+      height: 280,
       child: Image.asset(
         ImagePath().loginPhoto,
-        fit: BoxFit.contain,
+        fit: BoxFit.fitWidth,
       ),
     );
   }

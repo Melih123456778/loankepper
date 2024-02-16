@@ -15,7 +15,22 @@ class _LoginTextFieldState extends State<LoginTextField> {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.all(18.0),
+          padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 8),
+          child: TextField(
+            autocorrect: true,
+            controller: t1,
+            decoration: InputDecoration(
+              hintText: "Kullanıcı Adı",
+              prefixIcon: Image.asset('assets/goalkeeper.png'),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(18),
+                borderSide: const BorderSide(color: Colors.grey),
+              ),
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 8),
           child: TextField(
             autocorrect: true,
             controller: t1,
@@ -30,7 +45,7 @@ class _LoginTextFieldState extends State<LoginTextField> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.all(18.0),
+          padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 8),
           child: TextField(
             autocorrect: true,
             controller: t1,

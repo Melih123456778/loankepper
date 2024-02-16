@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loan_keeper/screens/profile_screen.dart';
 
 import 'screens/initial_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
         )),
         useMaterial3: true,
       ),
-      home: const InitialScreen(),
+      home: const ProfileScreen(),
     );
   }
 }
