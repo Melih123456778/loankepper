@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:loan_keeper/screens/main_screen.dart';
+import 'package:loan_keeper/auth/auth_page.dart';
+import 'package:loan_keeper/screens/login_screen.dart';
 import 'package:loan_keeper/screens/profile_screen.dart';
 import 'package:loan_keeper/screens/register_screen.dart';
 
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
         )),
         useMaterial3: true,
       ),
-      home: const MainScreen(),
+      home: const AuthPage(),
     );
   }
 }

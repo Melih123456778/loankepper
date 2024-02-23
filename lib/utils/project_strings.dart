@@ -38,6 +38,10 @@ class ProjectText {
     "Kayıt Ol",
     style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
   );
+  final Text logIn = const Text(
+    "Giriş Yap",
+    style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+  );
   final Text or = const Text(
     'OR',
     style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w400),

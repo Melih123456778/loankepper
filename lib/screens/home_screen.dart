@@ -1,12 +1,21 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:loan_keeper/screens/profile_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
+
+  void signUserOut() {
+    FirebaseAuth.instance.signOut();
+  }
 
   @override
   Widget build(BuildContext context) {
     const String vs = 'Vs';
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(onPressed: signUserOut, icon: const Icon(Icons.logout_sharp)),
+      ),
       body: Stack(
         children: [
           Positioned.fill(

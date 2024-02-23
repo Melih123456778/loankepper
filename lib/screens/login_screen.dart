@@ -5,23 +5,22 @@ import 'package:loan_keeper/widgets/login_textfield.dart';
 import '../utils/image_path.dart';
 import '../utils/project_strings.dart';
 
-class RegisterScreen extends StatefulWidget {
+class LoginScreen extends StatefulWidget {
   final Function()? onTap;
-  const RegisterScreen({
+  const LoginScreen({
     super.key,
     this.onTap, //required
   });
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController = TextEditingController();
 
-  void signUserUp() async {
+  void signUserIn() async {
     showDialog(
       context: context,
       builder: (context) {
@@ -33,17 +32,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
       },
     );
     try {
-      //iki şifre eşleşiyor mu konrol ediyor
-      if (passwordController.text == confirmPasswordController.text) {
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: emailController.text,
-          password: passwordController.text,
-        );
-      } else {
-        showErrorMessage('Şifreler birbiriyle eşleşmiyor');
-      }
-      // Giriş başarılı olduğunda yapılacak işlemler burada
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text,
+        password: passwordController.text,
+      );
       Navigator.pop(context);
+      // Giriş başarılı olduğunda yapılacak işlemler burada
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
       //hata mesajı göster
@@ -83,6 +77,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       child: TextField(
                         autocorrect: true,
                         controller: emailController,
+                        keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
                           fillColor: Colors.grey.shade200,
                           filled: true,
@@ -121,28 +116,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 8),
-                      child: TextField(
-                        obscureText: true,
-                        autocorrect: true,
-                        controller: confirmPasswordController,
-                        decoration: InputDecoration(
-                          fillColor: Colors.grey.shade200,
-                          filled: true,
-                          hintText: "Şifreyi Doğrula",
-                          prefixIcon: Image.asset('assets/goalkeeper.png'),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(18),
-                            borderSide: const BorderSide(color: Colors.lime),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(18),
-                            borderSide: BorderSide(color: Colors.lime.shade700),
-                          ),
-                        ),
-                      ),
-                    ),
                   ],
                 ),
                 Padding(
@@ -153,17 +126,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   child: SizedBox(
                     width: double.infinity,
-                    child: ElevatedButton(onPressed: signUserUp, child: ProjectText().signIn),
+                    child: ElevatedButton(onPressed: signUserIn, child: ProjectText().logIn),
                   ),
                 ),
                 orRow(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    TextButton(
-                      onPressed: widget.onTap,
-                      child: const Text('Giriş Yap'),
-                    ),
+                    TextButton(onPressed: widget.onTap, child: const Text('Kayıt Olmadın mı?')),
                     IconButton(onPressed: () {}, icon: Image.asset(ImagePath().google)),
                   ],
                 )
