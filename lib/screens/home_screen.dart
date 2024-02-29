@@ -1,20 +1,39 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:loan_keeper/screens/create_match_screen.dart';
 import 'package:loan_keeper/screens/profile_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
-  void signUserOut() {
-    FirebaseAuth.instance.signOut();
-  }
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final List<Card> matchTiles = [];
 
   @override
   Widget build(BuildContext context) {
     const String vs = 'Vs';
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(onPressed: signUserOut, icon: const Icon(Icons.logout_sharp)),
+        title: const Text('LoanKeeper'),
+        centerTitle: true,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          final result = await Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const CreateMatchScreen()),
+          );
+          if (result != null) {
+            setState(() {
+              matchTiles.add(result);
+            });
+          }
+        },
+        child: const Icon(Icons.add),
       ),
       body: Stack(
         children: [
@@ -27,27 +46,20 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           ListView.builder(
-            itemCount: 20,
+            itemCount: matchTiles.length,
             itemBuilder: (context, index) {
-              return const Padding(
-                padding: EdgeInsets.all(12.0),
-                child: Card(
-                  child: Column(
-                    children: [
-                      ListTile(
-                        title: Text('Bastır Münih $vs Real Mardin'),
-                        subtitle: Row(
-                          children: [
-                            Text('Konum: Gaziosmanpaşa/ İstanbul'),
-                            Spacer(),
-                            Text('Saat: 20.00'),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              );
+              return Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ProfileScreen(),
+                          ),
+                        );
+                      },
+                      child: matchTiles[index]));
             },
           ),
         ],

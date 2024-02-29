@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loan_keeper/auth/auth_page.dart';
 import 'package:loan_keeper/screens/register_screen.dart';
 import 'package:loan_keeper/utils/project_strings.dart';
 import 'package:loan_keeper/widgets/choice_age.dart';
@@ -34,7 +35,7 @@ class SelectAgeScreen extends StatelessWidget {
           ),
           CustomLimeButton(
             title: ProjectText().confirm,
-            route: const RegisterScreen(),
+            route: const AuthPage(),
           )
         ],
       ),
