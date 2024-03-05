@@ -83,6 +83,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       child: TextField(
                         autocorrect: true,
                         controller: emailController,
+                        keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
                           fillColor: Colors.grey.shade200,
                           filled: true,

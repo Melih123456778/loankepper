@@ -4,7 +4,7 @@ import 'package:loan_keeper/screens/home_screen.dart';
 import 'package:loan_keeper/screens/login_screen.dart';
 import 'package:loan_keeper/screens/profile_screen.dart';
 import 'package:loan_keeper/screens/register_screen.dart';
-
+import 'package:loan_keeper/screens/tabbar/match_screen.dart';
 import 'screens/create_match_screen.dart';
 import 'screens/initial_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
         )),
         useMaterial3: true,
       ),
-      home: HomeScreen(),
+      home: const HomeScreen(),
     );
   }
 }

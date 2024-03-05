@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:loan_keeper/screens/create_match_screen.dart';
 import 'package:loan_keeper/screens/profile_screen.dart';
+import 'package:loan_keeper/screens/tabbar/goalkeeper_screen.dart';
+import 'package:loan_keeper/screens/tabbar/match_screen.dart';
+import 'package:loan_keeper/utils/image_path.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -9,61 +12,65 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateMixin {
   final List<Card> matchTiles = [];
+  late TabBarController _tabBarController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabBarController = TabBarController();
+    _tabBarController.tabController = TabController(length: 2, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabBarController.tabController.dispose();
+    super.dispose();
+  }
+
+  void goToProfile() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const ProfileScreen(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    const String vs = 'Vs';
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 163, 185, 161),
       appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 163, 185, 161),
         title: const Text('LoanKeeper'),
         centerTitle: true,
+        actions: [
+          IconButton(onPressed: goToProfile, icon: const Icon(Icons.person)),
+        ],
+        bottom: TabBar(
+          controller: _tabBarController.tabController,
+          indicatorColor: Colors.lime,
+          labelColor: Colors.white,
+          unselectedLabelColor: Colors.black45,
+          tabs: const [
+            Tab(text: 'Maç Bul'),
+            Tab(text: 'Kaleci Bul'),
+          ],
+        ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          final result = await Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const CreateMatchScreen()),
-          );
-          if (result != null) {
-            setState(() {
-              matchTiles.add(result);
-            });
-          }
-        },
-        child: const Icon(Icons.add),
-      ),
-      body: Stack(
-        children: [
-          Positioned.fill(
-            child: Image.asset(
-              "assets/football_pitch.png",
-              fit: BoxFit.cover,
-              color: Colors.black.withOpacity(0.4),
-              colorBlendMode: BlendMode.darken,
-            ),
-          ),
-          ListView.builder(
-            itemCount: matchTiles.length,
-            itemBuilder: (context, index) {
-              return Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const ProfileScreen(),
-                          ),
-                        );
-                      },
-                      child: matchTiles[index]));
-            },
-          ),
+      body: TabBarView(
+        controller: _tabBarController.tabController,
+        children: const [
+          MatchScreen(),
+          GoalKeeperScreen(),
         ],
       ),
     );
   }
+}
+
+class TabBarController {
+  late TabController tabController;
 }
