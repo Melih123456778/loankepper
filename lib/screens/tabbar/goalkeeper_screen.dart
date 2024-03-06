@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:loan_keeper/screens/create_match_screen.dart';
+import 'package:loan_keeper/screens/floatingactionbutton/create_goalkeeper_screen.dart';
+import 'package:loan_keeper/screens/floatingactionbutton/create_match_screen.dart';
 import 'package:loan_keeper/screens/profile_screen.dart';
 import 'package:loan_keeper/utils/image_path.dart';
 
@@ -11,6 +12,21 @@ class GoalKeeperScreen extends StatefulWidget {
 }
 
 class _GoalKeeperScreenState extends State<GoalKeeperScreen> with SingleTickerProviderStateMixin {
+  final List<Card> goalkeeperTiles = [];
+
+  void createGoalkeeper() async {
+    final result = await Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const CreateGoalkeeperScreen(),
+        ));
+    if (result != null) {
+      setState(() {
+        goalkeeperTiles.add(result);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,12 +36,12 @@ class _GoalKeeperScreenState extends State<GoalKeeperScreen> with SingleTickerPr
         padding: const EdgeInsets.all(8.0),
         child: FloatingActionButton(
           backgroundColor: Colors.lime,
-          onPressed: () {},
+          onPressed: createGoalkeeper,
           child: const Icon(Icons.add),
         ),
       ),
       body: ListView.builder(
-        itemCount: 10,
+        itemCount: goalkeeperTiles.length,
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.all(12.0),
@@ -38,7 +54,7 @@ class _GoalKeeperScreenState extends State<GoalKeeperScreen> with SingleTickerPr
                   ),
                 );
               },
-              child: const Text('Kaleciler'),
+              child: goalkeeperTiles[index],
             ),
           );
         },

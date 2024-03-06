@@ -7,6 +7,7 @@ class ImagePath {
   final String ballIcon = 'assets/soccer_ball.png';
   final String google = 'assets/google.png';
   final Image goalkeeperIcon = Image.asset('assets/goalkeeper.png');
+  final Image createGoalkeeper = Image.asset('assets/create_goalkeeper.png');
   final String footballPitch = 'assets/football_pitch.png';
   final Image team = Image.asset('assets/team.png');
   final Image beAGoalkeeper = Image.asset('assets/be_a_goalkeeper.png');
