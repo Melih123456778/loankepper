@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:loan_keeper/screens/floatingactionbutton/create_match_screen.dart';
 import 'package:loan_keeper/screens/profile_screen.dart';
 import 'package:loan_keeper/screens/tabbar/goalkeeper_screen.dart';
 import 'package:loan_keeper/screens/tabbar/match_screen.dart';
-import 'package:loan_keeper/utils/image_path.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);

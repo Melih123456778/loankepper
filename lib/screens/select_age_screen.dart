@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:loan_keeper/auth/auth_page.dart';
-import 'package:loan_keeper/screens/register_screen.dart';
 import 'package:loan_keeper/utils/project_strings.dart';
 import 'package:loan_keeper/widgets/choice_age.dart';
 import 'package:loan_keeper/widgets/custom_lime_button.dart';

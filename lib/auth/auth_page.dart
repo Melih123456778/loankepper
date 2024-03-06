@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:loan_keeper/auth/login_or_register_screen.dart';
 import 'package:loan_keeper/screens/home_screen.dart';
-import 'package:loan_keeper/screens/login_screen.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});

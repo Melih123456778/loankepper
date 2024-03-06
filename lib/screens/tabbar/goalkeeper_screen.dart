@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loan_keeper/screens/floatingactionbutton/create_goalkeeper_screen.dart';
-import 'package:loan_keeper/screens/floatingactionbutton/create_match_screen.dart';
 import 'package:loan_keeper/screens/profile_screen.dart';
-import 'package:loan_keeper/utils/image_path.dart';
 
 class GoalKeeperScreen extends StatefulWidget {
   const GoalKeeperScreen({Key? key}) : super(key: key);

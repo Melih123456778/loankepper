@@ -64,4 +64,13 @@ class ProjectText {
     'Onayla',
     style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
   );
+
+  final Text playerInfo = const Text(
+    'Oyuncu Bilgileri',
+    style: TextStyle(
+      fontSize: 18,
+      color: Color.fromARGB(255, 255, 255, 255),
+      fontWeight: FontWeight.w600,
+    ),
+  );
 }
